@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Film ve dizi koleksiyonunuzu keşfedin - İnteraktif Medya Kitaplığı">
+    <meta name="theme-color" content="#0a0a0f">
+    <title>CineVault - İnteraktif Medya Kitaplığı</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header / Navigation -->
+    <header class="header" role="banner">
+        <nav class="nav" role="navigation" aria-label="Ana navigasyon">
+            <div class="nav__logo">
+                <span class="nav__logo-icon">🎬</span>
+                <span class="nav__logo-text">CineVault</span>
+            </div>
+            
+            <ul class="nav__menu" role="menubar">
+                <li role="none"><a href="#" class="nav__link active" role="menuitem" data-page="home">Ana Sayfa</a></li>
+                <li role="none"><a href="#" class="nav__link" role="menuitem" data-page="movies">Filmler</a></li>
+                <li role="none"><a href="#" class="nav__link" role="menuitem" data-page="series">Diziler</a></li>
+                <li role="none"><a href="#" class="nav__link nav__link--favorites" role="menuitem" data-page="favorites">
+                    <span class="favorites-icon">❤️</span>
+                    Favorilerim
+                    <span class="favorites-count" aria-label="Favori sayısı">0</span>
+                </a></li>
+            </ul>
+
+            <button class="nav__toggle" aria-label="Menüyü aç/kapat" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main" role="main">
+        <!-- Hero Section -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero__background"></div>
+            <div class="hero__content">
+                <h1 id="hero-title" class="hero__title">
+                    <span class="hero__title-line">Sinema Dünyasını</span>
+                    <span class="hero__title-line hero__title-line--accent">Keşfedin</span>
+                </h1>
+                <p class="hero__subtitle">Binlerce film ve dizi arasından favorilerinizi bulun</p>
+                
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <form class="search-form" role="search" aria-label="Medya arama">
+                        <div class="search-input-wrapper">
+                            <span class="search-icon" aria-hidden="true">🔍</span>
+                            <input 
+                                type="search" 
+                                class="search-input" 
+                                id="searchInput"
+                                placeholder="Film veya dizi ara..." 
+                                aria-label="Film veya dizi ara"
+                                autocomplete="off"
+                            >
+                            <button type="button" class="search-clear" aria-label="Aramayı temizle" hidden>✕</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="hero__scroll-indicator" aria-hidden="true">
+                <span>Aşağı Kaydır</span>
+                <div class="scroll-arrow"></div>
+            </div>
+        </section>
+
+        <!-- Filters Section -->
+        <section class="filters" aria-label="Filtreleme seçenekleri">
+            <div class="filters__container">
+                <div class="filters__group">
+                    <label for="genreFilter" class="filters__label">Tür</label>
+                    <select id="genreFilter" class="filters__select" aria-label="Türe göre filtrele">
+                        <option value="">Tüm Türler</option>
+                    </select>
+                </div>
+                
+                <div class="filters__group">
+                    <label for="yearFilter" class="filters__label">Yıl</label>
+                    <select id="yearFilter" class="filters__select" aria-label="Yıla göre filtrele">
+                        <option value="">Tüm Yıllar</option>
+                    </select>
+                </div>
+                
+                <div class="filters__group">
+                    <label for="typeFilter" class="filters__label">Tip</label>
+                    <select id="typeFilter" class="filters__select" aria-label="Tipe göre filtrele">
+                        <option value="">Tümü</option>
+                        <option value="film">Filmler</option>
+                        <option value="dizi">Diziler</option>
+                    </select>
+                </div>
+
+                <div class="filters__group filters__group--sort">
+                    <label for="sortFilter" class="filters__label">Sırala</label>
+                    <select id="sortFilter" class="filters__select" aria-label="Sıralama">
+                        <option value="rating-desc">Puan (Yüksek-Düşük)</option>
+                        <option value="rating-asc">Puan (Düşük-Yüksek)</option>
+                        <option value="year-desc">Yıl (Yeni-Eski)</option>
+                        <option value="year-asc">Yıl (Eski-Yeni)</option>
+                        <option value="title-asc">İsim (A-Z)</option>
+                        <option value="title-desc">İsim (Z-A)</option>
+                    </select>
+                </div>
+
+                <div class="filters__view-toggle">
+                    <button class="view-btn active" data-view="grid" aria-label="Grid görünümü" aria-pressed="true">
+                        <span class="view-icon grid-icon"></span>
+                    </button>
+                    <button class="view-btn" data-view="list" aria-label="Liste görünümü" aria-pressed="false">
+                        <span class="view-icon list-icon"></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Info -->
+        <section class="results-info" aria-live="polite">
+            <p class="results-count"><span id="resultsCount">0</span> sonuç bulundu</p>
+            <button class="clear-filters" id="clearFilters" hidden>Filtreleri Temizle</button>
+        </section>
+
+        <!-- Media Grid -->
+        <section class="media-section" aria-labelledby="media-section-title">
+            <h2 id="media-section-title" class="visually-hidden">Medya Listesi</h2>
+            <div class="media-grid" id="mediaGrid" role="list">
+                <!-- Media cards will be dynamically inserted here -->
+            </div>
+            
+            <!-- Loading State -->
+            <div class="loading" id="loading" aria-label="Yükleniyor">
+                <div class="loading__spinner"></div>
+                <p class="loading__text">Medyalar yükleniyor...</p>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState" hidden>
+                <span class="empty-state__icon">🎭</span>
+                <h3 class="empty-state__title">Sonuç Bulunamadı</h3>
+                <p class="empty-state__text">Arama kriterlerinize uygun medya bulunamadı. Filtreleri değiştirmeyi deneyin.</p>
+            </div>
+
+            <!-- Favorites Empty State -->
+            <div class="empty-state favorites-empty" id="favoritesEmpty" hidden>
+                <span class="empty-state__icon">💔</span>
+                <h3 class="empty-state__title">Henüz Favori Yok</h3>
+                <p class="empty-state__text">Beğendiğiniz filmleri ve dizileri favorilere ekleyerek burada görüntüleyebilirsiniz.</p>
+                <button class="btn btn--primary" id="browseCatalog">Kataloğa Göz At</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Detail Modal -->
+    <div class="modal" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+        <div class="modal__overlay" aria-hidden="true"></div>
+        <article class="modal__content">
+            <button class="modal__close" aria-label="Kapat">✕</button>
+            
+            <div class="modal__backdrop" id="modalBackdrop"></div>
+            
+            <div class="modal__body">
+                <div class="modal__poster">
+                    <img src="" alt="" id="modalPoster" loading="lazy">
+                </div>
+                
+                <div class="modal__info">
+                    <header class="modal__header">
+                        <span class="modal__type" id="modalType"></span>
+                        <h2 class="modal__title" id="modalTitle"></h2>
+                        <p class="modal__original-title" id="modalOriginalTitle"></p>
+                    </header>
+                    
+                    <div class="modal__meta">
+                        <span class="modal__rating">
+                            <span class="star-icon">⭐</span>
+                            <span id="modalRating"></span>
+                        </span>
+                        <span class="modal__year" id="modalYear"></span>
+                        <span class="modal__duration" id="modalDuration"></span>
+                    </div>
+                    
+                    <div class="modal__genres" id="modalGenres"></div>
+                    
+                    <div class="modal__section">
+                        <h3 class="modal__section-title">Özet</h3>
+                        <p class="modal__plot" id="modalPlot"></p>
+                    </div>
+                    
+                    <div class="modal__section">
+                        <h3 class="modal__section-title">Yönetmen</h3>
+                        <p class="modal__director" id="modalDirector"></p>
+                    </div>
+                    
+                    <div class="modal__section">
+                        <h3 class="modal__section-title">Oyuncular</h3>
+                        <div class="modal__cast" id="modalCast"></div>
+                    </div>
+                    
+                    <div class="modal__actions">
+                        <button class="btn btn--favorite" id="modalFavoriteBtn" aria-pressed="false">
+                            <span class="btn__icon">🤍</span>
+                            <span class="btn__text">Favorilere Ekle</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast" role="alert" aria-live="assertive" hidden>
+        <span class="toast__icon"></span>
+        <span class="toast__message"></span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer__content">
+            <div class="footer__brand">
+                <span class="footer__logo">🎬 CineVault</span>
+                <p class="footer__tagline">Film ve dizi tutkunlarının buluşma noktası</p>
+            </div>
+            <div class="footer__links">
+                <p class="footer__copyright">© 2024 CineVault - Web Teknolojileri Ödevi</p>
+                <p class="footer__tech">HTML5 • CSS3 • JavaScript ES6+</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js" type="module"></script>
+</body>
+</html>
+
