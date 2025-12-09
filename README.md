@@ -113,12 +113,3 @@ npx serve
 - Screen reader uyumluluğu
 - `prefers-reduced-motion` desteği
 
-## 📄 Lisans
-
-Bu proje eğitim amaçlı hazırlanmıştır.
-
----
-
-**Geliştirici**: Web Teknolojileri Öğrencisi  
-**Tarih**: 2025
-
