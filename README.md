@@ -1,5 +1,7 @@
 # 🎬 CineVault - İnteraktif Medya Kitaplığı
 
+> **🌐 Canlı Demo:** [https://sauwebprogramming.github.io/web-tech-project-busedmrly/](https://sauwebprogramming.github.io/web-tech-project-busedmrly/)
+
 Modern web teknolojileri kullanılarak geliştirilen, film ve dizi koleksiyonlarını yönetmek için tasarlanmış bir Single Page Application (SPA).
 
 ## 📋 Proje Hakkında
