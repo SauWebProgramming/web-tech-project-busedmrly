@@ -12,7 +12,7 @@
 
 // ==================== Constants & Configuration ====================
 const CONFIG = {
-    dataPath: 'data/media.json',
+    dataPath: './data/media.json',
     storageKeys: {
         favorites: 'cinevault_favorites',
         viewMode: 'cinevault_view_mode'
