@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Film ve dizi koleksiyonunuzu keşfedin - İnteraktif Medya Kitaplığı">
+    <meta name="description" content="Film, dizi ve kitap koleksiyonunuzu keşfedin - İnteraktif Medya Kitaplığı">
     <meta name="theme-color" content="#0a0a0f">
     <title>CineVault - İnteraktif Medya Kitaplığı</title>
     <link rel="stylesheet" href="css/style.css">
@@ -24,6 +24,7 @@
                 <li role="none"><a href="#" class="nav__link active" role="menuitem" data-page="home">Ana Sayfa</a></li>
                 <li role="none"><a href="#" class="nav__link" role="menuitem" data-page="movies">Filmler</a></li>
                 <li role="none"><a href="#" class="nav__link" role="menuitem" data-page="series">Diziler</a></li>
+                <li role="none"><a href="#" class="nav__link" role="menuitem" data-page="books">Kitaplar</a></li>
                 <li role="none"><a href="#" class="nav__link nav__link--favorites" role="menuitem" data-page="favorites">
                     <span class="favorites-icon">❤️</span>
                     Favorilerim
@@ -47,7 +48,7 @@
                     <span class="hero__title-line">Sinema Dünyasını</span>
                     <span class="hero__title-line hero__title-line--accent">Keşfedin</span>
                 </h1>
-                <p class="hero__subtitle">Binlerce film ve dizi arasından favorilerinizi bulun</p>
+                <p class="hero__subtitle">Binlerce film, dizi ve kitap arasından favorilerinizi bulun</p>
                 
                 <!-- Search Bar -->
                 <div class="search-container">
@@ -96,6 +97,7 @@
                         <option value="">Tümü</option>
                         <option value="film">Filmler</option>
                         <option value="dizi">Diziler</option>
+                        <option value="kitap">Kitaplar</option>
                     </select>
                 </div>
 
@@ -195,12 +197,12 @@
                     </div>
                     
                     <div class="modal__section">
-                        <h3 class="modal__section-title">Yönetmen</h3>
+                        <h3 class="modal__section-title" id="modalDirectorLabel">Yönetmen</h3>
                         <p class="modal__director" id="modalDirector"></p>
                     </div>
                     
                     <div class="modal__section">
-                        <h3 class="modal__section-title">Oyuncular</h3>
+                        <h3 class="modal__section-title" id="modalCastLabel">Oyuncular</h3>
                         <div class="modal__cast" id="modalCast"></div>
                     </div>
                     
@@ -226,10 +228,10 @@
         <div class="footer__content">
             <div class="footer__brand">
                 <span class="footer__logo">🎬 CineVault</span>
-                <p class="footer__tagline">Film ve dizi tutkunlarının buluşma noktası</p>
+                <p class="footer__tagline">Film, dizi ve kitap tutkunlarının buluşma noktası</p>
             </div>
             <div class="footer__links">
-                <p class="footer__copyright">© 2024 CineVault - Web Teknolojileri Ödevi</p>
+                <p class="footer__copyright">© 2025 CineVault - Web Teknolojileri Ödevi</p>
                 <p class="footer__tech">HTML5 • CSS3 • JavaScript ES6+</p>
             </div>
         </div>

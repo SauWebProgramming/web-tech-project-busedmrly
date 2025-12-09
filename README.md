@@ -120,5 +120,5 @@ Bu proje eğitim amaçlı hazırlanmıştır.
 ---
 
 **Geliştirici**: Web Teknolojileri Öğrencisi  
-**Tarih**: 2024
+**Tarih**: 2025
 

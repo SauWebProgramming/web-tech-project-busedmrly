@@ -311,7 +311,8 @@ const populateFilters = () => {
  */
 const createMediaCard = (media) => {
     const isFavorite = state.favorites.includes(media.id);
-    const typeLabel = media.type === 'film' ? 'Film' : 'Dizi';
+    const typeLabels = { film: 'Film', dizi: 'Dizi', kitap: 'Kitap' };
+    const typeLabel = typeLabels[media.type] || 'Medya';
     const genresHTML = media.genre.slice(0, 2).map(g => 
         `<span class="media-card__genre">${g}</span>`
     ).join('');
@@ -454,7 +455,8 @@ const openModal = (mediaId) => {
     modalPoster.alt = `${media.titleTr} posteri`;
     
     // Bilgiler
-    modalType.textContent = media.type === 'film' ? 'Film' : 'Dizi';
+    const typeLabels = { film: 'Film', dizi: 'Dizi', kitap: 'Kitap' };
+    modalType.textContent = typeLabels[media.type] || 'Medya';
     modalTitle.textContent = media.titleTr;
     modalOriginalTitle.textContent = media.title;
     modalRating.textContent = media.rating;
@@ -469,7 +471,18 @@ const openModal = (mediaId) => {
     // Özet
     modalPlot.textContent = media.plot;
     
-    // Yönetmen
+    // Yönetmen / Yazar
+    const directorLabel = document.getElementById('modalDirectorLabel');
+    const castLabel = document.getElementById('modalCastLabel');
+    
+    if (media.type === 'kitap') {
+        directorLabel.textContent = 'Yazar';
+        castLabel.textContent = 'Karakterler';
+    } else {
+        directorLabel.textContent = 'Yönetmen';
+        castLabel.textContent = 'Oyuncular';
+    }
+    
     modalDirector.textContent = media.director;
     
     // Oyuncular
@@ -566,6 +579,10 @@ const navigateTo = (page) => {
             state.filters.type = 'dizi';
             elements.typeFilter.value = 'dizi';
             break;
+        case 'books':
+            state.filters.type = 'kitap';
+            elements.typeFilter.value = 'kitap';
+            break;
         case 'favorites':
             // Favoriler için özel durum
             break;
@@ -631,6 +648,8 @@ const handleFilterChange = () => {
         state.currentPage = 'movies';
     } else if (state.filters.type === 'dizi') {
         state.currentPage = 'series';
+    } else if (state.filters.type === 'kitap') {
+        state.currentPage = 'books';
     } else {
         state.currentPage = 'home';
     }
