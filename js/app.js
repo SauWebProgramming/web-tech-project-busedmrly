@@ -100,9 +100,9 @@ const elements = {
  */
 const debounce = (func, wait) => {
     let timeout;
-    return (...args) => {
+    return function(...args) {
         clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), wait);
+        timeout = setTimeout(() => func(...args), wait);
     };
 };
 
@@ -632,6 +632,13 @@ const handleSearch = debounce((e) => {
     }
     
     applyFilters();
+    
+    // Arama yapıldığında sonuçlara scroll et
+    if (state.filters.search) {
+        setTimeout(() => {
+            elements.filters.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+    }
 }, CONFIG.debounceDelay);
 
 /**
