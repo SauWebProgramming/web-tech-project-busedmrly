@@ -169,17 +169,24 @@ const saveToStorage = (key, value) => {
  */
 const fetchMediaData = async () => {
     try {
+        console.log('Veri yükleniyor:', CONFIG.dataPath);
         const response = await fetch(CONFIG.dataPath);
+        
+        console.log('Response status:', response.status);
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         
         const data = await response.json();
+        console.log('Yüklenen medya sayısı:', data.media?.length || 0);
         return data.media || [];
     } catch (error) {
         console.error('Veri çekme hatası:', error);
         showToast('Veriler yüklenirken bir hata oluştu!', 'error');
+        // Loading'i gizle hata durumunda da
+        elements.loading.hidden = true;
+        elements.emptyState.hidden = false;
         return [];
     }
 };
